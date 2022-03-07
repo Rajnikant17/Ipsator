@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">IpsatorLocal</string>
+    <string name="customize_a_pizza">Customize your pizza</string>
+    <string name="remove_a_pizza">Remove pizza from Cart</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="dot">•</string>
+    <string name="total_items">\Total Items : \</string>
+    <string name="rs">\Rs  \</string>
+    <string name="add_in_cart">Add In Cart</string>
+    <string name="ok">Ok</string>
+    <string name="remove_items">Remove items.</string>
+</resources>

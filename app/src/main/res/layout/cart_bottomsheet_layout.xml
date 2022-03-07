@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="15dp"
+        android:text="Your Cart"
+        android:textColor="@color/purple_200"
+        android:textSize="22sp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivDismiss"
+        android:layout_width="45dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:padding="13dp"
+        android:src="@drawable/down_arrow"
+
+        />
+</RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTotalItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="30dp"
+            android:textSize="16sp"
+            android:textColor="@color/purple_200"
+            tools:text="Total Items     20"
+             />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTotalItem"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="7dp"
+            android:textSize="20sp"
+            android:textColor="@color/green"
+            android:layout_marginBottom="20dp"
+            tools:text="Rs 200"
+           />
+</androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

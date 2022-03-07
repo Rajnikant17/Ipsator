@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<data>
+    <variable
+        name="cartItem"
+        type="com.example.ipsatorlocal.util.CartItem" />
+</data>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="4dp"
+        android:text="@string/dot"
+        android:textColor="@color/green"
+        android:textSize="40sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSelectedPizza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/dot"
+        android:text="@{cartItem.customizePizzaName.toString()}"
+        android:textColor="@color/purple_200"
+        tools:text="Item name"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvItemCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvSelectedPizza"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/dot"
+        android:text="@{`Total Item   `+cartItem.noOfItem.toString()}"
+        android:textColor="@color/purple_200"
+        tools:text="Total item 2" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvPricePerItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvItemCount"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/dot"
+        android:textSize="18sp"
+        android:text="@{`Rs  `+cartItem.price.toString()+ `/price per item ` }"
+        android:textColor="@color/black"
+        tools:text="Rs / Per item" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/tvPricePerItem"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_grey" />
+</RelativeLayout>
+</layout>

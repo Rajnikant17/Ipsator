@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="crustSize"
+            type="com.example.ipsatorlocal.util.CrustSize" />
+        <variable
+            name="position"
+            type="Integer" />
+        <variable
+            name="itemClickListener"
+            type="com.example.ipsatorlocal.util.RecycleViewItemViewClickListener" />
+    </data>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{crustSize.isCrustSizeSelected()}"
+            android:onClick="@{() ->  itemClickListener.onClickItem(crustSize,position)}"
+            android:text="@{crustSize.name}"
+            />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

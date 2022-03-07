@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <data>
+        <variable
+            name="cartItem"
+            type="com.example.ipsatorlocal.util.CartItem" />
+        <variable
+            name="position"
+            type="Integer" />
+        <variable
+            name="itemClickListener"
+            type="com.example.ipsatorlocal.util.RecycleViewItemViewClickListener" />
+    </data>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    >
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pizzaItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="@color/purple_200"
+        android:textSize="16sp"
+        android:text="@{cartItem.customizePizzaName}"
+        tools:text="Rolled , small"
+        />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/pizzaItemCout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pizzaItem"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="5dp"
+        android:textColor="@color/black"
+        android:text="@{cartItem.noOfItem.toString()}"
+        tools:text="Item count : 2" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/light_grey"
+        android:layout_below="@+id/pizzaItemCout"
+        android:layout_marginTop="10dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/removeItem"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:onClick="@{() ->  itemClickListener.onClickItem(cartItem,position)}"
+        android:padding="10dp"
+       android:src="@drawable/remove"
+        tools:text="Remove" />
+</RelativeLayout>
+</layout>
