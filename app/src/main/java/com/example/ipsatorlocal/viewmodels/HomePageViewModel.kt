@@ -35,63 +35,59 @@ constructor(val pizzaDetailUseCase: PizzaDetailUseCase):ViewModel() {
      var selectedCrustSizename:String?=null
      var selectedPrice:Float?=null
 
+     var firstDefaultCrustSize=true
+
     // Get Data from Api
     fun getPizzaDetail(){
         viewModelScope.launch {
             pizzaDetailUseCase.getPizzaDetail().onEach {
                 when(it.data){
-                  is  PizzaDetail-> {
-                      selectedCrustId = it.data.defaultCrust
+                    is  PizzaDetail-> {
+                        selectedCrustId = it.data.defaultCrust
 
-                      // storing the default crust
-                      run loop@{
-                          it.data.crusts.forEach {
-                              if (it?.id == selectedCrustId) {
-                                  it?.isCrustSelected = true
-                                  selectedCrustname=it?.name
-                                  selectedCrustSizeId = it?.defaultSize
-                                  // storing the default crust size
-                                  run loop@{
-                                      it?.crustsSize?.forEach {
-                                          if (it?.id == selectedCrustSizeId) {
-                                              it?.isCrustSizeSelected = true
-                                              selectedCrustSizename=it?.name
-                                              selectedPrice=it?.price
-                                              return@loop
-                                          }
-                                          lastCrustSizeSelectedPosition++
-                                      }
-                                  }
-                                  return@loop
-                              }
-                              lastCrustSelectedPosition++
-                          }
-                      }
+                        // storing the default crust
 
-                  }
+                        it.data.crusts.forEachIndexed { index, crust ->
+                            if (crust?.id == selectedCrustId) {
+                                crust?.isCrustSelected = true
+                                selectedCrustname=crust?.name
+                                selectedCrustSizeId = crust?.defaultSize
+                                lastCrustSelectedPosition=index
+                            }
+
+                            crust?.crustsSize?.forEachIndexed { sizeIndex, crustSize ->
+                                if (crustSize?.id == selectedCrustSizeId) {
+                                    crustSize?.isCrustSizeSelected = true
+                                    if(firstDefaultCrustSize) {
+                                        selectedCrustSizename = crustSize?.name
+                                        selectedPrice = crustSize?.price
+                                        lastCrustSizeSelectedPosition = sizeIndex
+                                        firstDefaultCrustSize=false
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 pizzaMutalbleLivedata.value=it
             }.launchIn(viewModelScope)
         }
     }
+
     // Get List of the Crust Size of selected Crust
     fun getCorrespondingSelectedCrustSize(crustList:MutableList<Crust?>):MutableList<CrustSize?>{
         var crustSize= mutableListOf<CrustSize?>()
            crustList.forEach {
                 if (it?.isCrustSelected == true) {
-                    lastCrustSizeSelectedPosition=0
-                    run loop@{
-                        it.crustsSize.forEach {
-                            if (it?.id == selectedCrustSizeId) {
-                                it?.isCrustSizeSelected = true
-                                selectedPrice=it?.price
-                                selectedCrustSizeId=it?.id
-                                selectedCrustSizename=it?.name
-                                return@loop
+                        it.crustsSize.forEachIndexed {sizeIndex, crustSize ->
+                            if (crustSize?.isCrustSizeSelected==true) {
+                                crustSize.isCrustSizeSelected = true
+                                selectedPrice=crustSize.price
+                                selectedCrustSizeId=crustSize.id
+                                selectedCrustSizename=crustSize.name
+                                lastCrustSizeSelectedPosition=sizeIndex
                             }
-                            lastCrustSizeSelectedPosition++
                         }
-                    }
                     crustSize=it.crustsSize
                     return crustSize
                 }

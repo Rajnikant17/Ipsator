@@ -89,7 +89,6 @@ class CustomizePizzaDialog : DialogFragment() , RecycleViewItemViewClickListener
             is Crust -> {
                 item.isCrustSelected = true
                 crustAdapter.getItems().get(homePageVieMode.lastCrustSelectedPosition)?.isCrustSelected = false
-                crustSizeAdapter.getItems().get(homePageVieMode.lastCrustSizeSelectedPosition)?.isCrustSizeSelected = false
                 crustAdapter.notifyItemChanged(homePageVieMode.lastCrustSelectedPosition)
                 crustAdapter.notifyItemChanged(position)
                 crustSizeAdapter.setItems(homePageVieMode.getCorrespondingSelectedCrustSize(crustAdapter.getItems()))
